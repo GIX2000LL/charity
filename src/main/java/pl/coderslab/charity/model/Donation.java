@@ -1,5 +1,6 @@
 package pl.coderslab.charity.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
@@ -24,11 +25,11 @@ public class Donation {
     private int quantity;
 
     @NotNull
-    @OneToMany(mappedBy = "donation")
+    @OneToMany
     private Set<Category> categories = new HashSet<>();
 
     @NotNull
-    @OneToOne
+    @ManyToOne
     private Institution institution;
 
     @Size(min=2, message = "Nazwa ulicy powinna składac się przynajmniej z dwóch znaków")
@@ -40,14 +41,24 @@ public class Donation {
     @Pattern(regexp = "[0-9]{2}-[0-9]{3}",message = "Proszę wpisac poprawnie kod pocztowy")
     private String zipCode;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickUpDate;
 
+    @DateTimeFormat(pattern = "HH-MM")
     private LocalTime pickUpTime;
 
     private String pickUpComment;
 
+
+    @Pattern(regexp = "\\d{9}",message = "TELEFON MUSI SKŁADAĆ Z CYFR I MAKSYMALNIE 9 ZNAKÓW")
+    private String phoneNumber;
+
+    //------------------------------------------------------------------------------
+
     public Donation() {
     }
+
+    //-------------------------------------------------------------------------------
 
     public long getId() {
         return id;
@@ -127,5 +138,13 @@ public class Donation {
 
     public void setPickUpComment(String pickUpComment) {
         this.pickUpComment = pickUpComment;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

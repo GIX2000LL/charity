@@ -1,11 +1,10 @@
 package pl.coderslab.charity.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Institution {
@@ -22,9 +21,17 @@ public class Institution {
     @Size(min=2,message = "Opis powinien zawierać minimum 2 znaki" )
     private String description;
 
+    @OneToMany(mappedBy = "institution")
+    private List<Donation> donations=new ArrayList<>();
+
+
+    //------------------------------------------------------------------------------------
+
     public Institution() {
 
     }
+
+    //-----------------------------------------------------------------------------------------------
 
     public long getId() {
         return id;
@@ -48,5 +55,13 @@ public class Institution {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Donation> getDonations() {
+        return donations;
+    }
+
+    public void setDonations(List<Donation> donations) {
+        this.donations = donations;
     }
 }

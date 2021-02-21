@@ -5,12 +5,7 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Document</title>
-
-    <link rel="stylesheet" href="<c:url value="resources/css/style.css"/>"/>
+    <%@include file="partsOfCode/head.jsp"%>
 </head>
 <body>
 <header class="header--main-page">
@@ -20,13 +15,8 @@
             <li><a href="#" class="btn btn--small btn--highlighted">Załóż konto</a></li>
         </ul>
 
-        <ul>
-            <li><a href="#" class="btn btn--without-border active">Start</a></li>
-            <li><a href="#" class="btn btn--without-border">O co chodzi?</a></li>
-            <li><a href="#" class="btn btn--without-border">O nas</a></li>
-            <li><a href="#" class="btn btn--without-border">Fundacje i organizacje</a></li>
-            <li><a href="#" class="btn btn--without-border">Kontakt</a></li>
-        </ul>
+        <%@include file="partsOfCode/headerButtons.jsp"%>
+        
     </nav>
 
     <div class="slogan container container--90">
@@ -42,7 +32,7 @@
 <section class="stats">
     <div class="container container--85">
         <div class="stats--item">
-            <em>13</em>
+            <em>${totalBags}</em>
 
             <h3>Oddanych worków</h3>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius est beatae, quod accusamus illum
@@ -50,7 +40,7 @@
         </div>
 
         <div class="stats--item">
-            <em>5</em>
+            <em>${totalDonations}</em>
             <h3>Przekazanych darów</h3>
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam magnam, sint nihil cupiditate quas
                 quam.</p>
@@ -59,7 +49,7 @@
     </div>
 </section>
 
-<section class="steps">
+<section class="steps" id="what'sGoingOn">
     <h2>Wystarczą 4 proste kroki</h2>
 
     <div class="steps--container">
@@ -85,10 +75,11 @@
         </div>
     </div>
 
-    <a href="#" class="btn btn--large">Załóż konto</a>
+    <a href="#" class="btn btn--large">Załóż konto</a> <br/><br/>
+    <a href="/donationForm" class="btn btn--small">Pomóż bez rejestracji</a>
 </section>
 
-<section class="about-us">
+<section class="about-us" id="aboutUs">
     <div class="about-us--text">
         <h2>O nas</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas vitae animi rem pariatur incidunt libero
@@ -99,7 +90,7 @@
     </div>
 </section>
 
-<section class="help">
+<section class="help" id="institutions">
     <h2>Komu pomagamy?</h2>
 
     <!-- SLIDE 1 -->
@@ -109,55 +100,36 @@
 
         <ul class="help--slides-items">
             <li>
-                <div class="col">
-                    <div class="title">Fundacja "Dbam o Zdrowie"</div>
-                    <div class="subtitle">Cel i misja: Pomoc dzieciom z ubogich rodzin.</div>
-                </div>
 
+            <c:forEach items="${institutions}" var="inst" begin="0" end="1">
                 <div class="col">
-                    <div class="title">Fundacja "A kogo"</div>
-                    <div class="subtitle">Cel i misja: Pomoc wybudzaniu dzieci ze śpiączki.</div>
+                        <div class="title">Fundacja "${inst.name}"</div>
+                        <div class="subtitle">Cel i misja: ${inst.description}.</div>
                 </div>
+            </c:forEach>
             </li>
-
             <li>
-                <div class="col">
-                    <div class="title">Fundacja “Dla dzieci"</div>
-                    <div class="subtitle">Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej.</div>
-                </div>
-                <div class="col">
-                    <div class="title">Fundacja “Bez domu”</div>
-                    <div class="subtitle">Cel i misja: Pomoc dla osób nie posiadających miejsca zamieszkania</div>
-                </div>
-
+                <c:forEach items="${institutions}" var="inst" begin="2" end="3">
+                    <div class="col">
+                        <div class="title">Fundacja "${inst.name}"</div>
+                        <div class="subtitle">Cel i misja: ${inst.description}.</div>
+                    </div>
+                </c:forEach>
             </li>
-
         </ul>
+        <div>
+            <select name="institutions">
+            <c:forEach items="${institutions}" var="inst" begin="4">
+                <option style="width: 300px">Fundacja "${inst.name}" <br/> Cel i misja: ${inst.description}</option>
+            </c:forEach>
+            </select>
+        </div>
     </div>
 
 </section>
 
 <footer>
-    <div class="contact">
-        <h2>Skontaktuj się z nami</h2>
-        <h3>Formularz kontaktowy</h3>
-        <form class="form--contact">
-            <div class="form-group form-group--50"><input type="text" name="name" placeholder="Imię"/></div>
-            <div class="form-group form-group--50"><input type="text" name="surname" placeholder="Nazwisko"/></div>
-
-            <div class="form-group"><textarea name="message" placeholder="Wiadomość" rows="1"></textarea></div>
-
-            <button class="btn" type="submit">Wyślij</button>
-        </form>
-    </div>
-    <div class="bottom-line">
-        <span class="bottom-line--copy">Copyright &copy; 2018</span>
-        <div class="bottom-line--icons">
-            <a href="#" class="btn btn--small"><img src="images/icon-facebook.svg"/></a> <a href="#"
-                                                                                            class="btn btn--small"><img
-                src="images/icon-instagram.svg"/></a>
-        </div>
-    </div>
+   <%@include file="partsOfCode/footer.jsp"%>
 </footer>
 
 <script src="<c:url value="resources/js/app.js"/>"></script>

@@ -15,11 +15,17 @@ public class Category {
     @Size(min = 2,message = "Nazwa powinna składac się z minimum 2 znaków")
     private String name;
 
-    @ManyToOne
-    private Donation donation;
+    //-----------------------------------------------------------------------------------------
 
     public Category() {
     }
+
+    public Category(long id, @NotNull @Size(min = 2, message = "Nazwa powinna składac się z minimum 2 znaków") String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    //-----------------------------------------------------------------------------------------
 
     public long getId() {
         return id;
