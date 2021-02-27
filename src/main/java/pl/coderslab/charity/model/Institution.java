@@ -64,4 +64,15 @@ public class Institution {
     public void setDonations(List<Donation> donations) {
         this.donations = donations;
     }
+
+
+
+    @Override
+    public String toString() {
+        return "Institution{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

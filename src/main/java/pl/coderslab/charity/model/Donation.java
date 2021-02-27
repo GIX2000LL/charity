@@ -44,14 +44,12 @@ public class Donation {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickUpDate;
 
-    @DateTimeFormat(pattern = "HH-MM")
     private LocalTime pickUpTime;
-
-    private String pickUpComment;
-
 
     @Pattern(regexp = "\\d{9}",message = "TELEFON MUSI SKŁADAĆ Z CYFR I MAKSYMALNIE 9 ZNAKÓW")
     private String phoneNumber;
+
+    private String deliveryMessage;
 
     //------------------------------------------------------------------------------
 
@@ -132,19 +130,36 @@ public class Donation {
         this.pickUpTime = pickUpTime;
     }
 
-    public String getPickUpComment() {
-        return pickUpComment;
-    }
-
-    public void setPickUpComment(String pickUpComment) {
-        this.pickUpComment = pickUpComment;
-    }
-
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getDeliveryMessage() {
+        return deliveryMessage;
+    }
+
+    public void setDeliveryMessage(String deliveryMessage) {
+        this.deliveryMessage = deliveryMessage;
+    }
+
+    @Override
+    public String toString() {
+        return "Donation{" +
+                "id=" + id +
+                ", quantity=" + quantity +
+                ", categories=" + categories +
+                ", institution=" + institution +
+                ", street='" + street + '\'' +
+                ", city='" + city + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                ", pickUpDate=" + pickUpDate +
+                ", pickUpTime=" + pickUpTime +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", deliveryMessage='" + deliveryMessage + '\'' +
+                '}';
     }
 }
