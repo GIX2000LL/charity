@@ -14,7 +14,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-
     @Size (min = 2, message = "IMIĘ MUSI SIĘ SKŁADAC Z MINIMUM 2 ZNAKÓW")
     private String firstName;
 
@@ -28,6 +27,8 @@ public class User {
     private String password;
 
     private String securityRole;
+
+    private boolean isActive=true;
 
     //------------------------------------------------------------------------------------------
 
@@ -84,6 +85,14 @@ public class User {
 
     public void setSecurityRole(String securityRole) {
         this.securityRole = securityRole;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 }
 

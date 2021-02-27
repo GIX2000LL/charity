@@ -11,8 +11,8 @@
 <header class="header--main-page">
     <nav class="container container--70">
         <ul class="nav--actions">
-            <li><a href="" class="btn btn--small btn--without-border">Zaloguj</a></li>
-            <li><a href="/user" class="btn btn--small btn--highlighted">Załóż konto</a></li>
+            <li><a href="/login" class="btn btn--small btn--without-border">Zaloguj</a></li>
+            <li><a href="/registration" class="btn btn--small btn--highlighted">Załóż konto</a></li>
         </ul>
 
         <%@include file="partsOfCode/headerButtons.jsp"%>
@@ -75,7 +75,7 @@
         </div>
     </div>
 
-    <a href="/user" class="btn btn--large">Załóż konto</a> <br/><br/>
+    <a href="/registration" class="btn btn--large">Załóż konto</a> <br/><br/>
     <a href="/donationForm" class="btn btn--small">Pomóż bez rejestracji</a>
 </section>
 

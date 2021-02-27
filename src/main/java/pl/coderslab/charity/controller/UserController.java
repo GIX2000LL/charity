@@ -1,49 +1,35 @@
 package pl.coderslab.charity.controller;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.charity.model.User;
-import pl.coderslab.charity.repository.UserRepository;
-import pl.coderslab.charity.security.BCrypt;
-
-import javax.validation.Valid;
+import pl.coderslab.charity.security.PrincipalDetails;
 
 @RequestMapping("/user")
 @Controller
 public class UserController {
 
-    private final UserRepository userRepository;
-
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
-    //------------------------------------------------------------------------
-
     @GetMapping
-    public String showRegistrationForm (Model model) {
+    public String showUserZone(Model model) {
 
-        model.addAttribute("user", new User());
 
-        return "registrationForm";
-
+        return "user/userZone";
     }
 
-    @PostMapping
-    public String createUser (@ModelAttribute("user") @Valid User user, BindingResult result) {
+    //-------------------------------------------------------------
 
-        if(result.hasErrors()) {
+    @ModelAttribute("currentUser")
+    public User getCurrentUser () {
 
-            return "registrationForm";
-        }
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        PrincipalDetails principalDetails = (PrincipalDetails) auth.getPrincipal();
 
-        user.setPassword(BCrypt.hashpw(user.getPassword(),BCrypt.gensalt()));
-        user.setSecurityRole("USER");
-
-        userRepository.save(user);
-
-        return "redirect:";
+        return principalDetails.getUser();
     }
+
 }
