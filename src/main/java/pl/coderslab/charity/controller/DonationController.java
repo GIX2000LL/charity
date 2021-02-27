@@ -2,27 +2,27 @@ package pl.coderslab.charity.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.model.Category;
 import pl.coderslab.charity.model.Donation;
 import pl.coderslab.charity.model.Institution;
 import pl.coderslab.charity.repository.CategoryRepository;
+import pl.coderslab.charity.repository.DonationRepository;
 import pl.coderslab.charity.repository.InstitutionRepository;
-
-import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 @Controller
 @RequestMapping("/donationForm")
 public class DonationController {
 
-    private CategoryRepository categoryRepository;
-    public InstitutionRepository institutionRepository;
+    private final CategoryRepository categoryRepository;
+    private final InstitutionRepository institutionRepository;
+    private final DonationRepository donationRepository;
 
-    public DonationController(CategoryRepository categoryRepository, InstitutionRepository institutionRepository) {
+    public DonationController(CategoryRepository categoryRepository, InstitutionRepository institutionRepository, DonationRepository donationRepository) {
         this.categoryRepository = categoryRepository;
         this.institutionRepository = institutionRepository;
+        this.donationRepository = donationRepository;
     }
 
     //-------------------------------------------------------------------------------------------
@@ -35,23 +35,17 @@ public class DonationController {
         return "donationForm";
     }
 
-//    @PostMapping
-//    @ResponseBody
-//    public String makeNewDonation (@ModelAttribute Donation donation) {
-//
-//      return
-//
-//    }
+    @PostMapping
+    public String showConfirmationOfDonation (@ModelAttribute("donation") Donation donation) {
 
-    @PostMapping("/confirmation")
-    public String showConfirmationOfDonation () {
+        donationRepository.save(donation);
 
-        return "confirmation";
+       return "confirmation";
     }
 
     //-----------------------------------------------------------------------------------
 
-    @ModelAttribute("categories")
+    @ModelAttribute("categoriesModel")
     public List <Category> showAllCategories () {
 
         List<Category> categories = new ArrayList<>();
