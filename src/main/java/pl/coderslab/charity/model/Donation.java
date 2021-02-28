@@ -26,6 +26,7 @@ public class Donation {
 
     @NotNull
     @OneToMany
+    @JoinColumn
     private Set<Category> categories = new HashSet<>();
 
     @NotNull
