@@ -11,15 +11,14 @@
 </head>
 <body>
 <sec:authorize access="isAuthenticated()">
-<header class="header--form-page">
+<header style="height: 50px" class="header--form-page">
 
+    <c:if test="${currentUser.securityRole=='ROLE_USER'}">
     <nav class="container container--70">
         <ul class="nav--actions">
-            <li class="logged-user">
-                <sec:authentication property="principal.User.firstName" />
-                <c:if test="${currentUser.securityRole == 'ROLE_ADMIN' }">
-                    ADMIN
-                </c:if>
+            <li class="logged-user" style="font-size: x-large">
+             <sec:authentication property="principal.User.firstName" />
+
                 <ul class="dropdown">
                     <li><a href="#">Profil</a></li>
                     <li><a href="#">Moje zbiórki</a></li>
@@ -29,17 +28,33 @@
         </ul>
         
     </nav>
+    </c:if>
 
-    <div class="slogan container container--90">
-        <h2 style="color: green">
-            USER ZONE
-        </h2>
-    </div>
+    <c:if test="${currentUser.securityRole == 'ROLE_ADMIN' }">
+        <nav class="container container--70">
+            <ul class="nav--actions">
+                <li class="logged-user" style="font-size: x-large">
+                    PANEL ADMINISTRATORA
+
+                    <ul class="dropdown">
+                        <li><a href="/fundations">Fundacje</a></li>
+                        <li><a href="#">Moje zbiórki</a></li>
+                        <li><a href="/logout">Wyloguj</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </nav>
+
+    </c:if>
 </header>
 
-<footer>
-  
-</footer>
+    <div align="center">
+        <h2 style="color: green">
+            PANEL UŻYTKOWNIKA
+        </h2>
+    </div>
+
 
 <script src="js/app.js"></script>
 </sec:authorize>
