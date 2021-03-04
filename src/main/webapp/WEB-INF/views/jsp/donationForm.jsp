@@ -57,7 +57,7 @@
 
                 <div class="form-group form-group--checkbox">
                     <label>
-                        <input type="checkbox" id="category" name="categories" value="${cat.id}"/>
+                        <input data-value="${cat.name}" type="checkbox" id="category" name="categories" value="${cat.id}"/>
                         <span class="checkbox"></span>
                         <span class="description"> ${cat.name} </span>
                     </label>
@@ -97,7 +97,7 @@
 
                 <div class="form-group form-group--checkbox">
                     <label>
-                        <input type="radio" id="institution" name="institution" value="${inst.id}"/>
+                        <input data-value="${inst.name}" type="radio" id="institution" name="institution" value="${inst.id}"/>
                         <span class="checkbox radio"></span>
                         <span class="description">
                             <div class="title"> ${inst.name} </div>
@@ -179,7 +179,7 @@
                                 <span class="icon icon-bag"></span>
                                 <span class="summary--text">
                                     <input disabled style="background-color: ghostwhite;width: 40px " class="btn--without-border" id="quantityView"/>
-                                    worki <input disabled style="background-color: ghostwhite" class="btn--without-border" id="categoryView"/> </span>
+                                    worki <input disabled style="background-color: ghostwhite; color: black" class="btn--without-border" id="categoryView"/> </span>
                             </li>
 
                             <li>
@@ -228,6 +228,6 @@
 
 <script src="resources/js/app.js"></script>
 <script src="resources/js/validation.js"></script>
-<script src="resources/js/summary.js"></script>
+<script defer src="resources/js/summary.js"></script>
 </body>
 </html>

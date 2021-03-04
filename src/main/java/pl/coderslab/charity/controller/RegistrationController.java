@@ -27,7 +27,7 @@ public class RegistrationController {
 
         model.addAttribute("user", new User());
 
-        return "registrationForm";
+        return "forms/registrationForm";
 
     }
 
@@ -36,7 +36,7 @@ public class RegistrationController {
 
         if(result.hasErrors()) {
 
-            return "registrationForm";
+            return "forms/registrationForm";
         }
 
         user.setPassword(BCrypt.hashpw(user.getPassword(),BCrypt.gensalt()));

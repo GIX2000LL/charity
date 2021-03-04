@@ -6,57 +6,69 @@
 
 <!DOCTYPE html>
 <html lang="pl">
-<head>
-    <%@include file="../partsOfCode/head.jsp"%>
-</head>
-<body>
 <sec:authorize access="isAuthenticated()">
-<header style="height: 50px" class="header--form-page">
+<head>
 
-    <c:if test="${currentUser.securityRole=='ROLE_USER'}">
-    <nav class="container container--70">
-        <ul class="nav--actions">
-            <li class="logged-user" style="font-size: x-large">
-             <sec:authentication property="principal.User.firstName" />
+    <header class="header">
+        <div style="height: 30px"></div>
+        <c:if test="${currentUser.securityRole == 'ROLE_ADMIN' }">
+        <div align="left">
+            <nav style="padding-right: 1000px">
+                <ul class="nav--actions">
+                    <li class="logged-user" style="font-size: x-large;color:blue">
+                        PANEL ADMINISTRATORA
 
-                <ul class="dropdown">
-                    <li><a href="#">Profil</a></li>
-                    <li><a href="#">Moje zbiórki</a></li>
-                    <li><a href="/logout">Wyloguj</a></li>
+                        <ul class="dropdown">
+                            <li><a href="/foundations">Fundacje</a></li>
+                            <li><a href="#">Moje zbiórki</a></li>
+                            <li><a href="/logout">Wyloguj</a></li>
+                        </ul>
+                    </li>
                 </ul>
+            </nav>
+        </div>
+        </c:if>
+    <nav class="container container--70">
+
+        <ul >
+            <li><a href="/" class="btn btn--without-border ">Start</a></li>
+            <li><a href="/#what'sGoingOn" class="btn btn--without-border">O co chodzi?</a></li>
+            <li><a style="color: red" href="/logout" class="btn btn--without-border">Wyloguj</a></li>
+            <li style="width: 100px"></li>
+            <li class="logged-user" style="font-size: x-large; color: black" >
+                Witaj  <sec:authentication property="principal.User.firstName" />
             </li>
         </ul>
-        
+
+        <div class="container" style="height: 50px"></div>
+    <%@include file="../partsOfCode/head.jsp"%>
     </nav>
-    </c:if>
+    </header>
+</head>
+<body>
 
-    <c:if test="${currentUser.securityRole == 'ROLE_ADMIN' }">
-        <nav class="container container--70">
-            <ul class="nav--actions">
-                <li class="logged-user" style="font-size: x-large">
-                    PANEL ADMINISTRATORA
+<div style="background-image: url('resources/images/interior.jpg');width: 100%; opacity: 0.7;
+background-position: center">
 
-                    <ul class="dropdown">
-                        <li><a href="/fundations">Fundacje</a></li>
-                        <li><a href="#">Moje zbiórki</a></li>
-                        <li><a href="/logout">Wyloguj</a></li>
-                    </ul>
-                </li>
-            </ul>
 
-        </nav>
+<header style="height: 50px" class="header--form-page">
 
-    </c:if>
+
+
 </header>
+    <div class="container" style="height: 100px">
 
-    <div align="center">
-        <h2 style="color: green">
-            PANEL UŻYTKOWNIKA
-        </h2>
     </div>
 
-
+    <div class="container" align="center" style="height: 300px;font-size: large;color: black">
+        ggfgfg
+    </div>
+</div>
+    <div align="bottom">
+        <h2 style="color: green">
+        </h2></div>
 <script src="js/app.js"></script>
 </sec:authorize>
+
 </body>
 </html>

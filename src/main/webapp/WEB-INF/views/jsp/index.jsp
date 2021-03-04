@@ -35,15 +35,13 @@
             <em>${totalBags}</em>
 
             <h3>Oddanych worków</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius est beatae, quod accusamus illum
-                tempora!</p>
+            <p>Oddawaj rzeczy innym w wygodny i szybki sposób. Spakowane worki odbierze od Ciebie nasz kurier</p>
         </div>
 
         <div class="stats--item">
             <em>${totalDonations}</em>
             <h3>Przekazanych darów</h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam magnam, sint nihil cupiditate quas
-                quam.</p>
+            <p>Przekaż swoje dary potrzebującym !</p>
         </div>
 
     </div>
@@ -82,8 +80,19 @@
 <section class="about-us" id="aboutUs">
     <div class="about-us--text">
         <h2>O nas</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas vitae animi rem pariatur incidunt libero
-            optio esse quisquam illo omnis.</p>
+        <p style="color: green">Naszym celem jest stworzenie miejsca, w którym każdy będzie mógł oddać niepotrzebne rzeczy
+            zaufanym instytucjom.</p>
+        <ul style="font-size: x-large">
+        <li> Masz w domu rzeczy, których nie używasz, ale są  one w dobrym stanie i chcesz przekazać je osobom,
+            którym się mogą przydać? </li><br/>
+            <li> Nie wiesz w jaki sposób dorzeć do potrzebujących ?</li><br/>
+            <li>Nie wiesz jak w łątwy sposób przekazać dary</li>
+        </ul>
+        <p>  Jest wiele dostępnych rozwiązań, ale wiele z nich wymaga dodatkowego wysiłku lub nie budzą one zaufania.
+            W zweryfikowane miejsca trzeba pojechać, a nie ma na to czasu lub nie ma jak tam dotrzeć.
+            Natomiast kontenery pod domem lub lokalne zbiórki są niezweryfikowane i nie wiadomo czy te rzeczy faktycznie
+            trafią do potrzebujących. <p>
+
         <img src="<c:url value="resources/images/signature.svg"/>" class="about-us--text-signature" alt="Signature"/>
     </div>
     <div class="about-us--image"><img src="<c:url value="resources/images/about-us.jpg"/>" alt="People in circle"/>
@@ -101,31 +110,26 @@
         <ul class="help--slides-items">
             <li>
 
-            <c:forEach items="${institutions}" var="inst" begin="0" end="1">
-                <div class="col">
+                <c:forEach items="${institutions}" var="inst">
+                    <c:if test="${inst.id %2 ==0}">
+                <div class="col" >
                         <div class="title">Fundacja "${inst.name}"</div>
                         <div class="subtitle">Cel i misja: ${inst.description}.</div>
                 </div>
-            </c:forEach>
+                    </c:if>
+
             </li>
+                    <c:if test="${inst.id % 2 !=0}">
             <li>
-                <c:forEach items="${institutions}" var="inst" begin="2" end="3">
                     <div class="col">
                         <div class="title">Fundacja "${inst.name}"</div>
                         <div class="subtitle">Cel i misja: ${inst.description}.</div>
                     </div>
+                </c:if>
                 </c:forEach>
             </li>
         </ul>
-        <div>
-            <select name="institutions">
-            <c:forEach items="${institutions}" var="inst" begin="4">
-                <option style="width: 300px">Fundacja "${inst.name}" <br/> Cel i misja: ${inst.description}</option>
-            </c:forEach>
-            </select>
-        </div>
     </div>
-
 </section>
 
 <footer>

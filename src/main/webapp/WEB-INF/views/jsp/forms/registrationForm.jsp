@@ -7,13 +7,13 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <%@include file="partsOfCode/head.jsp"%>
+    <%@include file="../partsOfCode/head.jsp"%>
 </head>
 <body>
 <header>
     <nav class="container container--70">
         <ul class="nav--actions">
-            <li><a href="#">Zaloguj</a></li>
+            <li><a href="/login">Zaloguj</a></li>
             <li class="highlighted"><a href="#">Załóż konto</a></li>
         </ul>
 
@@ -56,7 +56,7 @@
 </section>
 
 <footer>
-    <%@include file="partsOfCode/footer.jsp"%>
+    <%@include file="../partsOfCode/footer.jsp"%>
 </footer>
 </body>
 </html>

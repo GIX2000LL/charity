@@ -8,11 +8,12 @@ function getQuantity () {
 function  getCategory () {
 
     const elements = document.getElementsByName('categories');
-    for (let i=0; i<elements.length;i++) {
 
-        if(elements[i].checked)
-       document.getElementById('categoryView').value += elements[i].value+" ";
-    }
+    elements.forEach(function (el) {
+        if (el.checked)
+        document.getElementById('categoryView').value += el.dataset.value+", ";
+    });
+
 }
 
 function  getInstitution () {
@@ -21,7 +22,7 @@ function  getInstitution () {
     for (let i=0; i<institutions.length;i++) {
 
         if(institutions[i].checked)
-            document.getElementById('institutionView').value = institutions[i].value;
+            document.getElementById('institutionView').value = institutions[i].dataset.value;
     }
 }
 
