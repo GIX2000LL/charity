@@ -20,7 +20,7 @@
 
                         <ul class="dropdown">
                             <li><a href="/foundations">Fundacje</a></li>
-                            <li><a href="#">Moje zbiórki</a></li>
+                            <li><a href="/admins">Lista administratorów</a></li>
                             <li><a href="/logout">Wyloguj</a></li>
                         </ul>
                     </li>

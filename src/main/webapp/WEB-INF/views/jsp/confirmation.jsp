@@ -16,16 +16,16 @@
 <body>
 <header class="header--form-page">
     <nav class="container container--70">
-        <ul class="nav--actions">
-            <li class="logged-user">
-                Witaj Agata
-                <ul class="dropdown">
-                    <li><a href="#">Profil</a></li>
-                    <li><a href="#">Moje zbiórki</a></li>
-                    <li><a href="#">Wyloguj</a></li>
-                </ul>
-            </li>
-        </ul>
+<%--        <ul class="nav--actions">--%>
+<%--            <li class="logged-user">--%>
+<%--                Witaj Agata--%>
+<%--                <ul class="dropdown">--%>
+<%--                    <li><a href="#">Profil</a></li>--%>
+<%--                    <li><a href="#">Moje zbiórki</a></li>--%>
+<%--                    <li><a href="#">Wyloguj</a></li>--%>
+<%--                </ul>--%>
+<%--            </li>--%>
+<%--        </ul>--%>
 
        <%@include file="partsOfCode/headerButtons.jsp"%>
 

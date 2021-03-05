@@ -9,9 +9,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -51,6 +49,8 @@ public class Donation {
     private String phoneNumber;
 
     private String deliveryMessage;
+
+    private boolean userConnected=true;
 
     //------------------------------------------------------------------------------
 
@@ -147,6 +147,14 @@ public class Donation {
         this.deliveryMessage = deliveryMessage;
     }
 
+    public boolean isUserConnected() {
+        return userConnected;
+    }
+
+    public void setUserConnected(boolean userConnected) {
+        this.userConnected = userConnected;
+    }
+
     @Override
     public String toString() {
         return "Donation{" +
@@ -161,6 +169,7 @@ public class Donation {
                 ", pickUpTime=" + pickUpTime +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", deliveryMessage='" + deliveryMessage + '\'' +
+                ", userConnected=" + userConnected +
                 '}';
     }
 }

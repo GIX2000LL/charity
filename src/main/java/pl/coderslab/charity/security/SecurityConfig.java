@@ -40,12 +40,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         security.csrf().disable();
         security.formLogin().loginPage("/login").defaultSuccessUrl("/user");
-        security.logout().logoutSuccessUrl("/").permitAll();
+        security.logout().logoutSuccessUrl("/");
 
         security.authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers("/userZone").hasAnyRole("USER","ADMIN");
-
+                .antMatchers("/","/donationForm/**").permitAll()
+                .antMatchers("/user/**").hasAnyRole("USER","ADMIN");
 
     }
 

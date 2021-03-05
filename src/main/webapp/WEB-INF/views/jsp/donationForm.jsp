@@ -1,8 +1,8 @@
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -47,7 +47,7 @@
     <div class="form--steps-container">
         <div class="form--steps-counter">Krok <span>1</span>/4</div>
 
-        <form action="donationForm" method="post" name="donationForm">
+        <form method="post" name="donationForm">
             <form:form modelAttribute="donation">
             <!-- STEP 1: class .active is switching steps -->
             <div data-step="1" class="active">
@@ -178,14 +178,14 @@
                             <li>
                                 <span class="icon icon-bag"></span>
                                 <span class="summary--text">
-                                    <input disabled style="background-color: ghostwhite;width: 40px " class="btn--without-border" id="quantityView"/>
+                                    <input disabled style="background-color: ghostwhite;width: 40px;color: black " class="btn--without-border" id="quantityView"/>
                                     worki <input disabled style="background-color: ghostwhite; color: black" class="btn--without-border" id="categoryView"/> </span>
                             </li>
 
                             <li>
                                 <span class="icon icon-hand"></span>
                                 <span class="summary--text"
-                                >Dla fundacji <input disabled style="background-color: ghostwhite" class="btn--without-border" id="institutionView"/></span>
+                                >Dla fundacji <input disabled style="background-color: ghostwhite; color: black" class="btn--without-border" id="institutionView"/></span>
                             </li>
                         </ul>
                     </div>
@@ -194,19 +194,19 @@
                         <div class="form-section--column">
                             <h4>Adres odbioru:</h4>
                             <ul>
-                                <li><input disabled style="background-color: ghostwhite" class="btn--without-border" id="addressView"/></li>
-                                <li><input disabled style="background-color: ghostwhite" class="btn--without-border" id="cityView"/></li>
-                                <li><input disabled style="background-color: ghostwhite" class="btn--without-border" id="codeView"/></li>
-                                <li><input disabled style="background-color: ghostwhite" class="btn--without-border" id="phoneView"/></li>
+                                <li><input disabled style="background-color: ghostwhite; color: black" class="btn--without-border" id="addressView"/></li>
+                                <li><input disabled style="background-color: ghostwhite; color: black" class="btn--without-border" id="cityView"/></li>
+                                <li><input disabled style="background-color: ghostwhite; color: black" class="btn--without-border" id="codeView"/></li>
+                                <li><input disabled style="background-color: ghostwhite; color: black" class="btn--without-border" id="phoneView"/></li>
                             </ul>
                         </div>
 
                         <div class="form-section--column">
                             <h4>Termin odbioru:</h4>
                             <ul>
-                                <li><input disabled style="background-color: ghostwhite" class="btn--without-border" id="dateView"/></li>
-                                <li><input disabled style="background-color: ghostwhite" class="btn--without-border" id="timeView"/></li>
-                                <li><input disabled style="background-color: ghostwhite" class="btn--without-border" id="messageView"/></li>
+                                <li><input disabled style="background-color: ghostwhite; color: black" class="btn--without-border" id="dateView"/></li>
+                                <li><input disabled style="background-color: ghostwhite; color: black" class="btn--without-border" id="timeView"/></li>
+                                <li>UWAGI: <input disabled style="background-color: ghostwhite; color: black" class="btn--without-border" id="messageView"/></li>
                             </ul>
                         </div>
                     </div>
@@ -226,8 +226,8 @@
     <%@include file="partsOfCode/footer.jsp"%>
 </footer>
 
-<script src="resources/js/app.js"></script>
-<script src="resources/js/validation.js"></script>
-<script defer src="resources/js/summary.js"></script>
+<script src="/resources/js/app.js"></script>
+<%--<script src="resources/js/validation.js"></script>--%>
+<script src="/resources/js/summary.js"></script>
 </body>
 </html>

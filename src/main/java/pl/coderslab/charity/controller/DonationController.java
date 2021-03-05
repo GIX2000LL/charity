@@ -11,8 +11,8 @@ import pl.coderslab.charity.repository.DonationRepository;
 import pl.coderslab.charity.repository.InstitutionRepository;
 import java.util.*;
 
-@Controller
 @RequestMapping("/donationForm")
+@Controller
 public class DonationController {
 
     private final CategoryRepository categoryRepository;
@@ -27,15 +27,17 @@ public class DonationController {
 
     //-------------------------------------------------------------------------------------------
 
-    @GetMapping
-    public String showDonationForm (Model model) {
+    @GetMapping("/{userConnected}")
+    public String showDonationForm (@PathVariable Boolean userConnected, Model model) {
 
-        model.addAttribute("donation",new Donation());
+        Donation donation = new Donation();
+        donation.setUserConnected(userConnected);
+        model.addAttribute("donation",donation);
 
         return "donationForm";
     }
 
-    @PostMapping
+    @PostMapping("/{userConnected}")
     public String showConfirmationOfDonation (@ModelAttribute("donation") Donation donation) {
 
         donationRepository.save(donation);

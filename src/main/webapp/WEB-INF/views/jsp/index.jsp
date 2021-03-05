@@ -2,15 +2,20 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
     <%@include file="partsOfCode/head.jsp"%>
 </head>
 <body>
+
 <header class="header--main-page">
     <nav class="container container--70">
         <ul class="nav--actions">
+
             <li><a href="/login" class="btn btn--small btn--without-border">Zaloguj</a></li>
             <li><a href="/registration" class="btn btn--small btn--highlighted">Załóż konto</a></li>
         </ul>
@@ -74,7 +79,7 @@
     </div>
 
     <a href="/registration" class="btn btn--large">Załóż konto</a> <br/><br/>
-    <a href="/donationForm" class="btn btn--small">Pomóż bez rejestracji</a>
+    <a href="/donationForm/false" class="btn btn--small">Pomóż bez rejestracji</a>
 </section>
 
 <section class="about-us" id="aboutUs">
@@ -135,7 +140,6 @@
 <footer>
    <%@include file="partsOfCode/footer.jsp"%>
 </footer>
-
 <script src="<c:url value="resources/js/app.js"/>"></script>
 </body>
 </html>

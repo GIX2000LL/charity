@@ -8,7 +8,7 @@
 <html lang="pl">
 
 <head>
-    <%@include file="../partsOfCode/head.jsp"%>
+
 </head>
 
 <body style="background: #ceffff">

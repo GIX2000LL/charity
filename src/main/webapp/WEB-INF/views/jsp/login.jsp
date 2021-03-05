@@ -13,20 +13,14 @@
 <header>
     <nav class="container container--70">
         <ul class="nav--actions">
-            <li><a href="#">Zaloguj</a></li>
-            <li class="highlighted"><a href="/registration">Załóż konto</a></li>
-        </ul>
-
-        <ul>
-            <li><a href="/" class="btn btn--without-border active">Wróć</a></li>
-
+            <li><a href="/" class="btn btn--without-border active" style="color: blue">Wróć do strony głównej</a></li>
         </ul>
     </nav>
 </header>
 
 <section class="login-page">
-    <h2>Zaloguj się</h2>
-
+    <h2 style="color: green">Zaloguj się</h2>
+    <div align="center">
     <form action="/login" method="post" onsubmit="return validation()">
         <div class="form-group">
             <div style="color: red" id="emailError"></div>
@@ -34,20 +28,18 @@
         </div>
         <div class="form-group">
             <div style="color: red" id="passwordError"></div>
-            <input id="password" type="password" name="password" placeholder="Hasło" />
+            <input id="password" type="password" name="password" placeholder="Hasło" /><br/>
             <a href="#" class="btn btn--small btn--without-border reset-password">Przypomnij hasło</a>
         </div>
 
         <div class="form-group form-group--buttons">
-            <a href="/registration" class="btn btn--without-border">Załóż konto</a>
-            <input id="submit" name="submit" type="submit" value="ZALOGUJ SIĘ">
+            <a href="/registration" style="color: blue" class="btn btn--without-border">Załóż konto</a>
+            <input style="color: green" id="submit" name="submit" type="submit" value="ZALOGUJ SIĘ">
         </div>
     </form>
+    </div>
 </section>
 
-<footer>
-
-</footer>
 
 </body>
 <script defer src="resources/js/validation.js"></script>
