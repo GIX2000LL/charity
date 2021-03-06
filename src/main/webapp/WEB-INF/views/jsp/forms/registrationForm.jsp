@@ -10,54 +10,56 @@
     <%@include file="../partsOfCode/head.jsp"%>
 </head>
 <body>
-<header>
+<header style="height: 20px">
     <nav class="container container--70">
         <ul class="nav--actions">
-            <li><a href="/login">Zaloguj</a></li>
-            <li class="highlighted"><a href="#">Załóż konto</a></li>
-        </ul>
-
-        <ul>
-            <li><a href="/" class="btn btn--without-border active">WRÓĆ</a></li>
+            <li><a href="/" style="color: blue" class="btn btn--without-border active">WRÓĆ</a></li>
         </ul>
     </nav>
 </header>
 
 <section class="login-page">
-    <h2>Załóż konto</h2>
-    <form method="post">
-        <form:form modelAttribute="user">
+    <h2 style="color: green">Załóż konto</h2>
+    <div align="center">
+        <form name="form" method="post">
+        <form:form modelAttribute="user" method="post">
         <div class="form-group">
-            <input type="text" name="firstName" placeholder="Imię" />
-            <form:errors path="firstName" cssStyle="color: red"/>
+            <form:input type='text' path='firstName' placeholder='Imię' /> <br/>
+            <div style="height: 10px; font-size: medium"><form:errors path="firstName" cssStyle="color: red"/></div>
         </div>
         <div class="form-group">
-            <input type="text" name="lastName" placeholder="Nazwisko" />
-            <form:errors path="lastName" cssStyle="color: red"/>
+            <form:input type="text" path="lastName" placeholder="Nazwisko" /> <br/>
+            <div style="height: 10px"></div>
+            <div style="height: 10px; font-size: medium"> <form:errors path="lastName" cssStyle="color: red"/></div>
         </div>
         <div class="form-group">
-            <input name="email" placeholder="Email" />
-            <form:errors path="email" cssStyle="color: red"/>
+            <form:input type="email" path="email" placeholder="Email" /> <br/>
+            <div style="height: 10px"></div>
+            <div style="height: 10px; font-size: medium"> <form:errors path="email" cssStyle="color: red"/> </div>
         </div>
         <div class="form-group">
-            <input type="password" name="password" placeholder="Hasło" />
-            <form:errors path="password" cssStyle="color: red"/>
+            <input id="password" type="password" name="password" placeholder="Hasło" /><br/>
+            <div style="height: 10px"></div>
+            <div style="height: 10px; font-size: medium"> <form:errors path="password" cssStyle="color: red"/> </div>
         </div>
         <div class="form-group">
-            <input type="password" name="password2" placeholder="Powtórz hasło" />
+            <input id="password2" type="password" name="password2" placeholder="Powtórz hasło" />
+            <div style="height: 10px"></div>
+            <div id="error" style="height: 10px; font-size: medium;color: red"></div>
+
         </div>
 
         <div class="form-group form-group--buttons">
-            <a href="login.html" class="btn btn--without-border">Zaloguj się</a>
-            <button class="btn" type="submit">Załóż konto</button>
+            <a href="/login" class="btn btn--without-border">Zaloguj się</a>
+            <button onclick=" return passwordConfirm()" class="btn" type="submit">Załóż konto</button>
         </div>
         </form:form>
-    </form>
+        </form>
+    </div>
 </section>
 
-<footer>
-    <%@include file="../partsOfCode/footer.jsp"%>
-</footer>
+
 </body>
+    <script src="/resources/js/registerValid.js"></script>
 </html>
 

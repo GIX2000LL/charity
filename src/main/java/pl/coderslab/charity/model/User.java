@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -20,10 +22,12 @@ public class User {
     @Size (min = 2, message = "NAZWISKO MUSI SIĘ SKŁADAĆ Z MINIMUM 2 ZNAKÓW")
     private String lastName;
 
-    @Email(message = "WPISZ POPRAWNIE ADRES EMAIL")
+    @Size(min=3, message = "WPISZ POPRAWNIE ADRES EMAIL")
+    @NotNull
     private String email;
 
-    @Size(min=1, message = "HASŁO MUSI MIEĆ CONAJMNIEJ 1 ZNAK")
+
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d.*\\d)[a-zA-Z0-9\\S]{8,}$", message = "HASŁO MUSI SIĘ SKŁADAĆ Z: CONAJMNIEJ 8 ZNAKÓW, MAŁEJ I DUŻEJ LITERY ORAZ CYFRY")
     private String password;
 
     private String securityRole;
@@ -94,5 +98,6 @@ public class User {
     public void setActive(boolean active) {
         isActive = active;
     }
+
 }
 
