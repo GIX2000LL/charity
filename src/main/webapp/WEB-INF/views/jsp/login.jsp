@@ -21,14 +21,15 @@
 <section class="login-page">
     <h2 style="color: green">Zaloguj się</h2>
     <div align="center">
-    <form action="/login" method="post" onsubmit="return validation()">
+    <form action="/login" method="post" name="form" onsubmit="return validLoginForm()">
         <div class="form-group">
-            <div style="color: red" id="emailError"></div>
+            <div style="color: red; font-size: large" id="emailError"></div><br/>
             <input type="text" id="username" name="username" placeholder="Email" />
         </div>
         <div class="form-group">
-            <div style="color: red" id="passwordError"></div>
-            <input id="password" type="password" name="password" placeholder="Hasło" /><br/>
+
+            <div style="color: red; font-size: large" id="passwordError"></div><br/>
+            <input type="password" id="password" name="password" placeholder="Hasło" /><br/>
             <a href="#" class="btn btn--small btn--without-border reset-password">Przypomnij hasło</a>
         </div>
 
@@ -42,5 +43,26 @@
 
 
 </body>
-<script defer src="resources/js/validation.js"></script>
+<script>
+    function validLoginForm() {
+
+        const email = document.forms ['form'] ['username'];
+        const emailError =document.getElementById('emailError');
+
+        const password = document.forms ['form'] ['password'];
+        const passwordError = document.getElementById('passwordError');
+
+        if(email.value.length <3 || !email.value.includes('@')) {
+            emailError.innerText = 'WISZ POPRAWNIE ADRES MAILOWY'
+            email.focus();
+            return false;
+        }
+
+        if(password.value.length <4) {
+            passwordError.innerText = 'HASŁO MUSI ZAWIERAĆ CONAJMNIEJ 4 ZNAKI';
+            password.focus();
+            return false;
+        }
+    }
+</script>
 </html>
