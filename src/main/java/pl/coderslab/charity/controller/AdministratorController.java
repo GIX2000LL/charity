@@ -4,6 +4,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.model.Institution;
 import pl.coderslab.charity.model.User;
@@ -12,6 +13,7 @@ import pl.coderslab.charity.repository.UserRepository;
 import pl.coderslab.charity.security.BCrypt;
 import pl.coderslab.charity.security.PrincipalDetails;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -44,8 +46,12 @@ public class AdministratorController {
     }
 
     @PostMapping("/foundations/edit/{id}")
-    public String editFoundation (@ModelAttribute Institution foundation) {
+    public String editFoundation (@ModelAttribute("foundation") @Valid Institution foundation, BindingResult result) {
 
+        if(result.hasErrors()){
+
+            return "forms/foundationForm";
+        }
         institutionRepository.save(foundation);
 
         return "redirect:/foundations";
@@ -62,8 +68,11 @@ public class AdministratorController {
     }
 
     @PostMapping("/foundations/add")
-    public String createFoundation (@ModelAttribute Institution foundation) {
+    public String createFoundation (@ModelAttribute("foundation") @Valid Institution foundation, BindingResult result) {
 
+        if(result.hasErrors()) {
+            return "forms/foundationForm";
+        }
         institutionRepository.save(foundation);
 
         return "redirect:/foundations";
@@ -97,7 +106,11 @@ public class AdministratorController {
     }
 
     @PostMapping("/admins/add")
-    public String createAdmin (@ModelAttribute User admin) {
+    public String createAdmin (@ModelAttribute("admin") @Valid User admin, BindingResult result) {
+
+        if(result.hasErrors()){
+            return "forms/adminForm";
+        }
 
         admin.setPassword(BCrypt.hashpw(admin.getPassword(),BCrypt.gensalt()));
         admin.setSecurityRole("ROLE_ADMIN");
@@ -117,8 +130,11 @@ public class AdministratorController {
     }
 
     @PostMapping("/admins/edit/{id}")
-    public String editAdmin (@ModelAttribute User admin) {
+    public String editAdmin (@ModelAttribute("admin") @Valid User admin, BindingResult result) {
 
+        if(result.hasErrors()){
+            return "forms/adminForm";
+        }
         userRepository.save(admin);
 
         return "redirect:/admins";

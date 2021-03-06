@@ -8,44 +8,58 @@
 <html lang="pl">
 
 <head>
-
+    <%@include file="../partsOfCode/head.jsp"%>
 </head>
 
-<body style="background: #ceffff">
+<body style="background-color: #bcfcff">
 <header>
+    <div style="height: 10px "></div>
     <div align="center">
             <a href="/foundations"> <button style="color: blue"> WRÓĆ DO LISTY FUNDACJI </button></a>
     </div>
 </header>
-    <div style="height: 50px"></div>
-    <div align="center">
-    <form method="post">
-        <form:form modelAttribute="foundation">
+    <section class="login-page">
+        <div align="center">
+        <form method="post">
+            <form:form modelAttribute="foundation" method="post">
 
                 <c:if test="${foundation.id !=0}">
-                    <form:input path="id" type="hidden"/>
-                </c:if>
+              <form:input path="id" type="hidden"/>
+              </c:if>
 
-                <label>NAZWA: </label><form:input path="name" type="text"/>
-
-               <label>CEL FUNDACJI: </label> <form:input path="description" type="text"/>
-
+            <div class="form-group">
+                <label style="font-size: large">NAZWA: </label> <br/>
+                <div style="height: 10px;"></div>
+                <form:input path="name" type="text" cssStyle="background: white"/><br/>
+                <div style="height: 10px"></div>
+                <div style="height: 20px; font-size: medium"><form:errors path="name" type="text" cssStyle="color: red"/></div>
+                </div>
+            <div class="form-group">
+               <label style="font-size: large">CEL FUNDACJI: </label> <br>
+                <div style="height: 10px;"></div>
+                <form:textarea path="description" type="text" cssStyle="background: white"/><br>
+                <div style="height: 10px"></div>
+                <div style="height: 20px; font-size: medium"><form:errors path="description" cssStyle="color: red"/></div>
+            </div>
+            </div>
                 <div style="height: 50px"></div>
-            <c:choose>
-            <c:when test="${foundation.id !=0}">
-                <button class="btn" type="submit" style="color: green">Zatwierdź edycję</button>
-            </c:when>
-            <c:otherwise>
-                <button class="btn" type="submit" style="color: green">Stwórz fundację</button>
-            </c:otherwise>
-            </c:choose>
-
-        </form:form>
-    </form>
-    </div>
+                <div class="form-group">
+                    <c:choose>
+                    <c:when test="${foundation.id !=0}">
+                        <button class="btn" type="submit" style="color: green; background-color: white">Zatwierdź edycję</button>
+                    </c:when>
+                    <c:otherwise>
+                        <button class="btn" type="submit" style="color: green; background-color: white">Stwórz fundację</button>
+                    </c:otherwise>
+                    </c:choose>
+                </div>
+            </form:form>
+        </form>
+        </div>
 
 <div style="height: 50px"></div>
             <div style="font-size: x-large;color:blue" align="center">
+                <h2>
                 <c:choose>
                     <c:when test="${foundation.id !=0}">
                         EDYCJA FUNDACJI ${foundation.name}
@@ -55,9 +69,10 @@
                     </c:otherwise>
 
                 </c:choose>
+                </h2>
             </div>
 
-
+    </section>
 </body>
 </html>
 

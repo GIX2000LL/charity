@@ -8,70 +8,93 @@
 <html lang="pl">
 
 <head>
-
+    <%@include file="../partsOfCode/head.jsp"%>
 </head>
 
-<body style="background: #ceffff">
+<body style="background: #bcfcff">
 <header>
+    <div style="height: 10px "></div>
     <div align="center">
-        <a href="/admins"> <button style="color: blue"> WRÓĆ DO LISTY ADMINISTRATORÓW </button></a>
+        <a href="/admins"> <button style="color: blue; background-color: white" class="btn"> WRÓĆ DO LISTY ADMINISTRATORÓW </button></a>
     </div>
 </header>
-<div style="height: 50px"></div>
-<div align="center">
-    <form method="post">
-        <form:form modelAttribute="admin">
+<section class="login-page">
+    <div align="center">
+        <form method="post">
+            <form:form modelAttribute="admin">
 
-            <c:if test="${admin.id !=0}">
-                <form:input path="id" type="hidden"/>
-            </c:if>
+                <c:if test="${admin.id !=0}">
+                    <form:input path="id" type="hidden" cssStyle="background: white"/>
+                </c:if>
+            <div class="form-group">
 
-            <label>IMIĘ: </label><form:input path="firstName" type="text"/> <br/>
+                <label style="font-size: large">IMIĘ: </label><br/>
+                <form:input path="firstName" type="text" cssStyle="background: white"/> <br/>
+                <div style="height: 10px"></div>
+                <div style="font-size: medium"><form:errors path="firstName" type="text" cssStyle="color: red"/> </div>
+            </div>
             <div style="height: 10px"></div>
-            <label>NAZWISKO: </label> <form:input path="lastName" type="text"/> <br/>
-            <div style="height: 10px"></div>
-            <label>EMAIL: </label> <form:input path="email" type="email"/> <br/>
-            <div style="height: 10px"></div>
+            <div class="form-group">
+                <label style="font-size: large">NAZWISKO: </label><br/>
+                <form:input path="lastName" type="text" cssStyle="background: white"/> <br/>
+                <div style="height: 10px"></div>
+                <div style="font-size: medium"><form:errors path="lastName" type="text" cssStyle="color: red"/> </div>
+            </div>
+                <div style="height: 10px"></div>
+            <div class="form-group">
+                <label style="font-size: large">EMAIL: </label><br/>
+                <form:input path="email" type="email" cssStyle="background: white"/> <br/>
+                <div style="height: 10px"></div>
+                <div style="font-size: medium"><form:errors path="email" type="text" cssStyle="color: red"/> </div>
+            </div>
+                <div style="height: 10px"></div>
+                <div class="form-group">
+                <c:choose>
+                    <c:when test="${admin.id !=0}">
+                        <form:input type="hidden" path="password" cssStyle="background: white"/> <br/>
+                    </c:when>
+                    <c:otherwise>
+                        <label style="font-size: large">PASSWORD: </label><br>
+                        <form:input path="password" type="password" cssStyle="background: white"/> <br/>
+                        <div style="height: 10px"></div>
+                        <div style="font-size: medium"><form:errors path="password" type="password" cssStyle="color: red"/> </div>
+                    </c:otherwise>
+                </c:choose>
+                </div>
+                 <form:input type="hidden" path="securityRole"/> <br/>
+
+
+                <div style="height: 30px"></div>
+                <div class="form-group">
+                <c:choose>
+                    <c:when test="${admin.id !=0}">
+                        <button class="btn" type="submit" style="color: green;background-color: white">Zatwierdź edycję</button>
+                    </c:when>
+                    <c:otherwise>
+                        <button class="btn" type="submit" style="color: green; background-color: white">Stwórz nowego administartora</button>
+                    </c:otherwise>
+                </c:choose>
+                </div>
+                </form:form>
+        </form>
+    </div>
+
+    <div style="height: 50px"></div>
+    <div style="font-size: x-large;color:blue" align="center">
+        <h2>
             <c:choose>
                 <c:when test="${admin.id !=0}">
-                    <form:input type="hidden" path="password"/> <br/>
+                    EDYCJA UŻYTKOWNIKA ${admin.firstName} ${admin.lastName}
                 </c:when>
                 <c:otherwise>
-                    <label>PASSWORD: </label> <form:input path="password" type="password"/> <br/>
+                    TWORZENIE NOWEGO ADMINISTRATORA
                 </c:otherwise>
+
             </c:choose>
+        </h2>
+    </div>
 
-             <form:input type="hidden" path="securityRole"/> <br/>
-
-
-            <div style="height: 30px"></div>
-            <c:choose>
-                <c:when test="${admin.id !=0}">
-                    <button class="btn" type="submit" style="color: green">Zatwierdź edycję</button>
-                </c:when>
-                <c:otherwise>
-                    <button class="btn" type="submit" style="color: green">Stwórz nowego administartora</button>
-                </c:otherwise>
-            </c:choose>
-
-        </form:form>
-    </form>
-</div>
-
-<div style="height: 50px"></div>
-<div style="font-size: x-large;color:blue" align="center">
-    <c:choose>
-        <c:when test="${admin.id !=0}">
-            EDYCJA UŻYTKOWNIKA ${admin.firstName} ${admin.lastName}
-        </c:when>
-        <c:otherwise>
-            TWORZENIE NOWEGO ADMINISTRATORA
-        </c:otherwise>
-
-    </c:choose>
-</div>
-
-
+</section>
 </body>
 </html>
 
