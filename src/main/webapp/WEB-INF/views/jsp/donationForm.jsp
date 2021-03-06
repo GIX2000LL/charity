@@ -47,7 +47,7 @@
     <div class="form--steps-container">
         <div class="form--steps-counter">Krok <span>1</span>/4</div>
 
-        <form method="post" name="donationForm">
+        <form method="post" name="donationForm" onsubmit="return donationSubmitValid()">
             <form:form modelAttribute="donation">
             <!-- STEP 1: class .active is switching steps -->
             <div data-step="1" class="active">
@@ -78,7 +78,6 @@
                     <label>
                         Liczba 60l worków:
                         <input type="number" id="quantity" name="quantity">
-<%--                       <form:input path="quantity" type="number" name="bags" step="1" min="1"/>--%>
                     </label>
                 </div>
 
@@ -131,13 +130,13 @@
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Kod pocztowy <input id="zipCode" type="text" name="zipCode" />
+                                Kod pocztowy <input id="zipCode" type="text" name="zipCode" placeholder="Format xx-xxx" />
                             </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Numer telefonu <input id="phoneNumber" type="text" name="phoneNumber" />
+                                Numer telefonu <input id="phoneNumber"  minlength="9" maxlength="9" type="text" name="phoneNumber" placeholder="Wpisz 9 cyfr" />
                             </label>
                         </div>
                     </div>
@@ -222,12 +221,11 @@
     </div>
 </section>
 
-<footer>
-    <%@include file="partsOfCode/footer.jsp"%>
-</footer>
+
 
 <script src="/resources/js/app.js"></script>
-<%--<script src="resources/js/validation.js"></script>--%>
 <script src="/resources/js/summary.js"></script>
+<script src="/resources/js/donationValidSub.js"></script>
+
 </body>
 </html>

@@ -79,7 +79,7 @@
     </div>
 
     <a href="/registration" class="btn btn--large">Załóż konto</a> <br/><br/>
-    <a href="/donationForm/false" class="btn btn--small">Pomóż bez rejestracji</a>
+    <a href="/donationForm/false" class="btn btn--without-border" style="color: green;" >Pomóż bez rejestracji</a>
 </section>
 
 <section class="about-us" id="aboutUs">
