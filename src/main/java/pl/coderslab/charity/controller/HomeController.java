@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.charity.model.Donation;
 import pl.coderslab.charity.model.Institution;
+import pl.coderslab.charity.model.Message;
 import pl.coderslab.charity.repository.DonationRepository;
 import pl.coderslab.charity.repository.InstitutionRepository;
 
@@ -28,6 +29,8 @@ public class HomeController {
 
     @GetMapping
     public String homeAction(Model model){
+
+        model.addAttribute("message",new Message());
 
         return "index";
     }
