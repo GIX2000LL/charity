@@ -15,7 +15,7 @@
 <header>
     <div style="height: 10px "></div>
     <div align="center">
-            <a href="/foundations"> <button style="color: blue"> WRÓĆ DO LISTY FUNDACJI </button></a>
+            <a href="/foundations"> <button style="color: blue; font-size: large"> WRÓĆ DO LISTY FUNDACJI </button></a>
     </div>
 </header>
     <section class="login-page">

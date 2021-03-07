@@ -30,13 +30,17 @@ public class AdministratorController {
         this.userRepository = userRepository;
     }
 
+    //---------------------------------------------------------------------------
+
+
+
+//-----------------------------Foundation CRUD ----------------------------------------------
+
     @GetMapping("/foundations")
     public String showFoundationsList () {
 
         return "user/foundations";
     }
-
-    //---------------------------------------------------------------------------
 
     @GetMapping("/foundations/edit/{id}")
     public String showFoundationEditForm (@PathVariable Long id, Model model) {
@@ -56,8 +60,6 @@ public class AdministratorController {
 
         return "redirect:/foundations";
     }
-
-    //------------------------------------------------------------------------------
 
     @GetMapping("/foundations/add")
     public String showFoundationForm (Model model) {
@@ -87,7 +89,7 @@ public class AdministratorController {
         return "redirect:/foundations";
     }
 
-    //------------------------------------------------------------------------------
+//-------------------------------Admins CRUD ---------------------------------------------------
 
     @GetMapping("/admins")
     public String showAllAdmins () {
@@ -95,7 +97,6 @@ public class AdministratorController {
         return "user/admins";
     }
 
-    //--------------------------------------------------------------------------------
 
     @GetMapping("/admins/add")
     public String showAdminForm (Model model) {
@@ -119,7 +120,6 @@ public class AdministratorController {
         return "redirect:/admins";
     }
 
-    //----------------------------------------------------------------------------------
 
     @GetMapping("/admins/edit/{id}")
     public String showEditAdminForm (@PathVariable Long id, Model model) {
@@ -148,6 +148,83 @@ public class AdministratorController {
         return "redirect:/admins";
     }
 
+    //-------------------------------USERS CRUD -------------------------------------------
+
+    @GetMapping("/users")
+    public String showUsers () {
+
+        return "user/users";
+    }
+
+    @GetMapping("/users/add")
+    public String showUserForm (Model model) {
+
+        model.addAttribute("user", new User());
+
+        return "forms/userForm";
+    }
+
+    @PostMapping("/users/add")
+    public String createUser (@ModelAttribute("user") @Valid User user, BindingResult result) {
+
+        if(result.hasErrors()){
+            return "forms/userForm";
+        }
+
+        user.setPassword(BCrypt.hashpw(user.getPassword(),BCrypt.gensalt()));
+        user.setSecurityRole("ROLE_USER");
+        userRepository.save(user);
+
+        return "redirect:/users";
+    }
+
+    @GetMapping("/users/edit/{id}")
+    public String showEditUserForm (@PathVariable Long id, Model model) {
+
+        model.addAttribute("user", getUserById(id));
+
+        return "forms/userForm";
+    }
+
+    @PostMapping("/users/edit/{id}")
+    public String editUser (@ModelAttribute("user") @Valid User user, BindingResult result) {
+
+        if(result.hasErrors()){
+            return "forms/userForm";
+        }
+        userRepository.save(user);
+
+        return "redirect:/users";
+    }
+
+    @GetMapping("/users/delete/{id}")
+    public String deleteUser (@PathVariable Long id) {
+
+        userRepository.delete(getUserById(id));
+
+        return "redirect:/users";
+    }
+
+    @GetMapping("/users/block/{id}")
+    public String blockUser (@PathVariable Long id) {
+
+        User user = getUserById(id);
+        user.setActive(false);
+        userRepository.save(user);
+
+        return "redirect:/users";
+    }
+
+    @GetMapping("/users/unblock/{id}")
+    public String unblockUser (@PathVariable Long id) {
+
+        User user = getUserById(id);
+        user.setActive(true);
+        userRepository.save(user);
+
+        return "redirect:/users";
+    }
+
     //--------------------------------------------------------------------------
 
     @ModelAttribute("institutions")
@@ -157,7 +234,6 @@ public class AdministratorController {
     }
 
 
-    //-------------------------------------------------------------------------------------
     private Institution findInstById (Long id) {
 
         Optional<Institution> optInst =institutionRepository.findById(id);
@@ -178,7 +254,7 @@ public class AdministratorController {
     }
 
     @ModelAttribute("currentUser")
-    public User getCurrentUser () {
+    private User getCurrentUser () {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         PrincipalDetails principalDetails = (PrincipalDetails) auth.getPrincipal();
@@ -194,4 +270,13 @@ public class AdministratorController {
                 .findAny()
                 .orElseThrow(NoSuchElementException::new);
     }
+
+    @ModelAttribute("users")
+    private List <User> showUsersList () {
+
+        return userRepository.findAll().stream()
+                .filter(user -> user.getSecurityRole().equals("ROLE_USER"))
+                .collect(Collectors.toList());
+    }
+
 }

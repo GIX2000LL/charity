@@ -20,8 +20,8 @@
 
                         <ul class="dropdown">
                             <li><a href="/foundations">Fundacje</a></li>
-                            <li><a href="/admins">Lista administratorów</a></li>
-                            <li><a href="/logout">Wyloguj</a></li>
+                            <li><a href="/admins">Administratorzy</a></li>
+                            <li><a href="/users">Użytkownicy</a></li>
                         </ul>
                     </li>
                 </ul>

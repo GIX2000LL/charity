@@ -27,10 +27,9 @@
             <input type="text" id="username" name="username" placeholder="Email" />
         </div>
         <div class="form-group">
-
             <div style="color: red; font-size: large" id="passwordError"></div><br/>
             <input type="password" id="password" name="password" placeholder="Hasło" /><br/>
-            <a href="#" class="btn btn--small btn--without-border reset-password">Przypomnij hasło</a>
+            <a href="#" style="color: red" class="btn btn--small btn--without-border reset-password">Zapomniałem hasła</a>
         </div>
 
         <div class="form-group form-group--buttons">

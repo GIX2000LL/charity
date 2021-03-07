@@ -22,6 +22,7 @@ public class User {
     @Size (min = 2, message = "NAZWISKO MUSI SIĘ SKŁADAĆ Z MINIMUM 2 ZNAKÓW")
     private String lastName;
 
+    @Size(min =3, message = "WPISZ POPRAWNIE ADRES EMAIL")
     @Email(message = "WPISZ POPRAWNIE ADRES EMAIL")
     @NotNull
     private String email;

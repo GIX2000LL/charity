@@ -8,7 +8,6 @@ function validLoginForm() {
 
     if(email.value.length <3 || !email.value.includes('@')) {
         emailError.innerText = 'WISZ POPRAWNIE ADRES MAILOWY'
-        email.focus();
         return false;
     }
 
