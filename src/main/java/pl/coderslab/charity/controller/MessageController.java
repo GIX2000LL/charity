@@ -32,19 +32,36 @@ public class MessageController {
             return "index";
         }
 
+        JavaMailSenderImpl mailSender = createMailSender();
+        SimpleMailMessage mailMessage = createMessage(message);
+
+        mailSender.send(mailMessage);
+
+        return "confirmMessageSend";
+    }
+
+    //-------------------------------------------------------------------
+
+    private JavaMailSenderImpl createMailSender () {
+
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost(this.emailConfig.getHost());
         mailSender.setPort(this.emailConfig.getPort());
         mailSender.setUsername(this.emailConfig.getUsername());
         mailSender.setPassword(this.emailConfig.getPassword());
 
+        return mailSender;
+    }
+
+    private SimpleMailMessage createMessage (Message message) {
+
         SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setFrom("charity@gmail.com");
         mailMessage.setTo(message.getEmail());
         mailMessage.setSubject("Wiadomość od "+ message.getName()+" "+message.getSurname());
         mailMessage.setText(message.getMessage());
 
-        mailSender.send(mailMessage);
-
-        return "confirmMessageSend";
+        return mailMessage;
     }
+
 }
