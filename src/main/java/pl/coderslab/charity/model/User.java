@@ -2,6 +2,7 @@ package pl.coderslab.charity.model;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import pl.coderslab.charity.security.SecureToken;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -10,6 +11,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -35,11 +37,14 @@ public class User {
 
     private String securityRole;
 
-    private boolean isActive=true;
+    private boolean isActive=true;//=true
 
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany (mappedBy = "user")
     private List<Donation> donations = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private Set<SecureToken> tokens;
 
     //------------------------------------------------------------------------------------------
 
@@ -112,6 +117,14 @@ public class User {
 
     public void setDonations(List<Donation> donations) {
         this.donations = donations;
+    }
+
+    public Set<SecureToken> getTokens() {
+        return tokens;
+    }
+
+    public void setTokens(Set<SecureToken> tokens) {
+        this.tokens = tokens;
     }
 }
 

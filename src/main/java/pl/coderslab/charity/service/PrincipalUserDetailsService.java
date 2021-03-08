@@ -32,4 +32,23 @@ public class PrincipalUserDetailsService implements UserDetailsService {
         return user.map(PrincipalDetails::new).get();
 
     }
+
+//    @Override
+//    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+//
+//        Optional<User> userOptional = userRepository.findByEmail(email);
+//
+//        User customer = userOptional.stream()
+//                .findAny()
+//                .orElseThrow(()->new UsernameNotFoundException("USER "+email+" NOT FOUND"));
+//
+//        boolean enabled = !customer.isActive();
+//        UserDetails user = org.springframework.security.core.userdetails.User.withUsername(customer.getEmail())
+//                .password(customer.getPassword())
+//                .disabled(enabled)
+//                .authorities("USER").build();
+//
+//        return user;
+//    }
+
 }
