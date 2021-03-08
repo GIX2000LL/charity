@@ -1,5 +1,7 @@
 package pl.coderslab.charity.model;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
@@ -13,7 +15,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Donation {
+public class Donation implements Comparable <Donation> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +24,7 @@ public class Donation {
     @NumberFormat(style = NumberFormat.Style.NUMBER)
     private int quantity;
 
+    @LazyCollection(LazyCollectionOption.FALSE)
     @NotNull
     @OneToMany
     @JoinColumn
@@ -51,6 +54,11 @@ public class Donation {
     private String deliveryMessage;
 
     private boolean userConnected=true;
+
+    private boolean isPickedUp=false;
+
+    @ManyToOne
+    private User user;
 
     //------------------------------------------------------------------------------
 
@@ -155,21 +163,25 @@ public class Donation {
         this.userConnected = userConnected;
     }
 
-    @Override
-    public String toString() {
-        return "Donation{" +
-                "id=" + id +
-                ", quantity=" + quantity +
-                ", categories=" + categories +
-                ", institution=" + institution +
-                ", street='" + street + '\'' +
-                ", city='" + city + '\'' +
-                ", zipCode='" + zipCode + '\'' +
-                ", pickUpDate=" + pickUpDate +
-                ", pickUpTime=" + pickUpTime +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", deliveryMessage='" + deliveryMessage + '\'' +
-                ", userConnected=" + userConnected +
-                '}';
+    public User getUser() {
+        return user;
     }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public boolean isPickedUp() {
+        return isPickedUp;
+    }
+
+    public void setPickedUp(boolean pickedUp) {
+        isPickedUp = pickedUp;
+    }
+
+    @Override
+    public int compareTo(Donation o) {
+        return getPickUpDate().compareTo(o.getPickUpDate());
+    }
+
 }

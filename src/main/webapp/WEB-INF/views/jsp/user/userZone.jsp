@@ -31,8 +31,9 @@
     <nav class="container container--70">
 
         <ul >
-            <li><a href="/" class="btn btn--without-border ">Start</a></li>
-            <li><a href="/#what'sGoingOn" class="btn btn--without-border">O co chodzi?</a></li>
+            <li><a href="user/details/${currentUser.id}" class="btn btn--without-border ">Moje dane</a></li>
+            <li><a href="/user/donations/${currentUser.id}" class="btn btn--without-border">Moje dary</a></li>
+            <li><a href="/donationForm/true/${currentUser.id}" class="btn btn--without-border">Złóż nowy dar</a></li>
             <li><a style="color: red" href="/logout" class="btn btn--without-border">Wyloguj</a></li>
             <li style="width: 100px"></li>
             <li class="logged-user" style="font-size: x-large; color: black" >
@@ -47,25 +48,34 @@
 </head>
 <body>
 
-<div style="background-image: url('resources/images/interior.jpg');width: 100%; opacity: 0.7;
-background-position: center">
+    <div style="background-image: url('resources/images/interior.jpg');width: 100%; opacity: 0.7;
+    background-position: center">
+
+        <div style="height: 100px"></div>
+    <div align="center" style="height: 400px;font-size: x-large;color: black">
+        <div style="font-size: xx-large; color: brown" class="form-group">
+               <span style="background-color: white"> KURIER POJAWI SIĘ NAJPIERW PO TEN DAR:</span>
+        </div>
+        <div style="height: 20px"></div>
+        <div class="form-group">
+            <span style="background-color: white">DLA FUNDACJI: ${primeDonation.institution.name} </span>
+        </div>
+        <div class="form-group" >
+            <span style="background-color: white"> ADRES ODBIORU: ${primeDonation.zipCode} ${primeDonation.city} </span>
+           <span style="background-color: white"> ${primeDonation.street}</span>
+        </div>
+        <div class="form-group" style="height: 20px"></div>
+        <div >
+            <span style="background-color: white"> TERMIN ODBIORU: ${primeDonation.pickUpDate} ${primeDonation.pickUpTime}  </span>
+        </div>
+        <div class="form-group">
+        </div>
 
 
-<header style="height: 50px" class="header--form-page">
-
-
-
-</header>
-    <div class="container" style="height: 100px">
-
-    </div>
-
-    <div class="container" align="center" style="height: 300px;font-size: large;color: black">
-        ggfgfg
     </div>
 </div>
     <div align="bottom">
-        <h2 style="color: green">
+        <h2 style="color: green"> PANEL UŻYTKOWNIKA
         </h2></div>
 <script src="js/app.js"></script>
 </sec:authorize>

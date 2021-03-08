@@ -11,7 +11,7 @@ function donationSubmitValid () {
 
 
     if(quantity.value == 0 || categoryView.value.length <1 || institutionView.value.length<1 || data.value.length<1
-        || address.value.length<1 || city.value.length<1 || !code.value.match('[0-9]{2}-[0-9]{3}') || !phone.value.match('\\d{9}') || time.value.length<1 ) {
+        || address.value.length<2 || city.value.length<1 || !code.value.match('[0-9]{2}-[0-9]{3}') || !phone.value.match('\\d{9}') || time.value.length<1 ) {
         alert('UZUPEŁNIJ POPRAWNIE WSZYSTKIE POTRZEBNE DANE ZANIM WYŚLESZ DARY');
         return false;
     }

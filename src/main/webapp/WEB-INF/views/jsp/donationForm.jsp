@@ -13,10 +13,7 @@
 <header class="header--form-page" style="height: 200px">
     <nav class="container container--70">
         <ul class="nav--actions">
-            <ul class="nav--actions">
-                <li><a href="/login" class="btn btn--small btn--without-border">Zaloguj</a></li>
-                <li><a href="/registration" class="btn btn--small btn--highlighted">Załóż konto</a></li>
-            </ul>
+
         </ul>
 
         <%@include file="partsOfCode/headerButtons.jsp"%>
@@ -50,6 +47,8 @@
         <form method="post" name="donationForm" onsubmit="return donationSubmitValid()">
             <form:form modelAttribute="donation">
             <!-- STEP 1: class .active is switching steps -->
+                <form:input path="user" type="hidden"/>
+                <form:input path="userConnected" type="hidden"/>
             <div data-step="1" class="active">
                 <h3>Zaznacz co chcesz oddać:</h3>
 

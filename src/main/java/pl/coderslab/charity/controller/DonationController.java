@@ -6,9 +6,12 @@ import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.model.Category;
 import pl.coderslab.charity.model.Donation;
 import pl.coderslab.charity.model.Institution;
+import pl.coderslab.charity.model.User;
 import pl.coderslab.charity.repository.CategoryRepository;
 import pl.coderslab.charity.repository.DonationRepository;
 import pl.coderslab.charity.repository.InstitutionRepository;
+import pl.coderslab.charity.repository.UserRepository;
+
 import java.util.*;
 
 @RequestMapping("/donationForm")
@@ -18,28 +21,35 @@ public class DonationController {
     private final CategoryRepository categoryRepository;
     private final InstitutionRepository institutionRepository;
     private final DonationRepository donationRepository;
+    private final UserRepository userRepository;
 
-    public DonationController(CategoryRepository categoryRepository, InstitutionRepository institutionRepository, DonationRepository donationRepository) {
+    public DonationController(CategoryRepository categoryRepository, InstitutionRepository institutionRepository, DonationRepository donationRepository, UserRepository userRepository) {
         this.categoryRepository = categoryRepository;
         this.institutionRepository = institutionRepository;
         this.donationRepository = donationRepository;
+        this.userRepository = userRepository;
     }
 
     //-------------------------------------------------------------------------------------------
 
-    @GetMapping("/{userConnected}")
-    public String showDonationForm (@PathVariable Boolean userConnected, Model model) {
+    @GetMapping("/{userConnected}/{userId}")
+    public String showDonationForm (@PathVariable Boolean userConnected, @PathVariable Long userId, Model model) {
 
         Donation donation = new Donation();
         donation.setUserConnected(userConnected);
+        if(userId!=0) {
+            User user = getUserById(userId);
+            donation.setUser(user);
+        }
         model.addAttribute("donation",donation);
 
         return "donationForm";
     }
 
-    @PostMapping("/{userConnected}")
-    public String showConfirmationOfDonation (@ModelAttribute("donation") Donation donation) {
+    @PostMapping("/{userConnected}/{userId}")
+    public String showConfirmationOfDonation (@PathVariable Long userId,@ModelAttribute("donation") Donation donation, Model model) {
 
+        model.addAttribute("userId", userId);
         donationRepository.save(donation);
 
        return "confirmation";
@@ -69,5 +79,14 @@ public class DonationController {
     @ModelAttribute("institutions")
     public List<Institution> showAllInstitutions () {
         return institutionRepository.findAll();
+    }
+
+    private User getUserById (Long id) {
+
+        Optional<User> optionalUser = userRepository.findById(id);
+
+        return optionalUser.stream()
+                .findAny()
+                .orElseThrow(NoSuchElementException::new);
     }
 }

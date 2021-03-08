@@ -18,7 +18,14 @@
     <nav class="container container--70">
 
         <ul>
-            <li><a href="/" class="btn btn--without-border" style="color: blue">Wróć do strony głównej</a></li>
+            <c:choose>
+            <c:when test="${userId!=0}">
+            <li><a href="/user" class="btn btn--without-border" style="color: blue">Wróć do panelu użytkownika</a></li>
+            </c:when>
+            <c:otherwise>
+                <li><a href="/" class="btn btn--without-border" style="color: blue">Wróć do strony głównej</a></li>
+            </c:otherwise>
+            </c:choose>
         </ul>
 
     </nav>
