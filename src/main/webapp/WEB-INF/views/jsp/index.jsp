@@ -16,8 +16,8 @@
     <nav class="container container--70">
         <ul class="nav--actions">
 
-            <li><a href="/login" class="btn btn--small btn--without-border">Zaloguj</a></li>
-            <li><a href="/registration" class="btn btn--small btn--highlighted">Załóż konto</a></li>
+            <li><a style="color: green; font-size: large" href="/login" class="btn btn--small btn--without-border">Zaloguj</a></li>
+            <li><a style="color: blue; font-size: large" href="/registration" class="btn btn--small btn--highlighted">Załóż konto</a></li>
         </ul>
 
         <%@include file="partsOfCode/headerButtons.jsp"%>
@@ -26,7 +26,7 @@
 
     <div class="slogan container container--90">
         <div class="slogan--item">
-            <h1>
+            <h1 style="color: brown">
                 Zacznij pomagać!<br/>
                 Oddaj niechciane rzeczy w zaufane ręce
             </h1>
@@ -53,7 +53,7 @@
 </section>
 
 <section class="steps" id="what'sGoingOn">
-    <h2>Wystarczą 4 proste kroki</h2>
+    <h2 style="color: brown">Wystarczą 4 proste kroki</h2>
 
     <div class="steps--container">
         <div class="steps--item">
@@ -78,13 +78,13 @@
         </div>
     </div>
 
-    <a href="/registration" class="btn btn--large">Załóż konto</a> <br/><br/>
+    <a style="color: blue" href="/registration" class="btn btn--large">Załóż konto</a> <br/><br/>
     <a href="/donationForm/false/0" class="btn btn--without-border" style="color: green;" >Pomóż bez rejestracji</a>
 </section>
 
 <section class="about-us" id="aboutUs">
     <div class="about-us--text">
-        <h2>O nas</h2>
+        <h2 style="color: darkblue">O nas</h2>
         <p style="color: green">Naszym celem jest stworzenie miejsca, w którym każdy będzie mógł oddać niepotrzebne rzeczy
             zaufanym instytucjom.</p>
         <ul style="font-size: x-large">
@@ -105,11 +105,11 @@
 </section>
 
 <section class="help" id="institutions">
-    <h2>Komu pomagamy?</h2>
+    <h2 style="color: brown">Komu pomagamy?</h2>
 
     <!-- SLIDE 1 -->
     <div class="help--slides active" data-id="1">
-        <p>W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy.
+        <p style="color: darkblue">W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy.
             Możesz sprawdzić czym się zajmują.</p>
 
         <ul class="help--slides-items">

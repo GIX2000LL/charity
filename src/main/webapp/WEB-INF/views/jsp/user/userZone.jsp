@@ -10,7 +10,7 @@
 <head>
 
     <header class="header">
-        <div style="height: 30px"></div>
+        <div style="height: 10px"></div>
         <c:if test="${currentUser.securityRole == 'ROLE_ADMIN' }">
         <div align="left">
             <nav style="padding-right: 1000px">
@@ -22,6 +22,7 @@
                             <li><a href="/foundations">Fundacje</a></li>
                             <li><a href="/admins">Administratorzy</a></li>
                             <li><a href="/users">Użytkownicy</a></li>
+                            <li><a href="/allDonations/all">DARY</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -52,7 +53,9 @@
     background-position: center">
 
         <div style="height: 100px"></div>
-    <div align="center" style="height: 400px;font-size: x-large;color: black">
+    <div align="center" style="height: 300px;font-size: x-large;color: black">
+<%--        <c:choose>--%>
+<%--            <c:when test="${!empty donation }">--%>
         <div style="font-size: xx-large; color: brown" class="form-group">
                <span style="background-color: white"> KURIER POJAWI SIĘ NAJPIERW PO TEN DAR:</span>
         </div>
@@ -70,7 +73,13 @@
         </div>
         <div class="form-group">
         </div>
-
+<%--            </c:when>--%>
+<%--            <c:otherwise>--%>
+<%--                <div style="font-size: xx-large; color: brown" class="form-group">--%>
+<%--                    <span style="background-color: white"> WSZYSTKIE DARY ZOSTAŁY ODEBRANE</span>--%>
+<%--                </div>--%>
+<%--            </c:otherwise>--%>
+<%--        </c:choose>--%>
 
     </div>
 </div>

@@ -13,7 +13,15 @@
 <section class="login-page">
     <div style="height: 10px"></div>
     <div align="center">
+        <c:choose>
+            <c:when test="${x eq 'x'}">
+        <a href="/allDonations"> <button style="color: blue; font-size: large">WRÓĆ DO LISTY WSZYSTKICH DARÓW</button> </a>
+            </c:when>
+            <c:otherwise>
+
         <a href="/user/donations/${currentUser.id}"> <button style="color: blue; font-size: large">WRÓĆ DO LISTY TWOICH DARÓW</button> </a>
+            </c:otherwise>
+        </c:choose>
     </div>
 
     <div >
@@ -41,7 +49,7 @@
                 <div class="form-group" style="background-color: white"> <span style="color: brown"> GODZINA ODBIORU: </span> ${donation.pickUpTime} </div>
                 <div style="height: 20px"></div>
                 <div class="form-group" style="background-color: white">
-                    <c:if test="${donation.pickedUp}"> <span style="color: blue"> DAR ODEBRANY </span>  </div> </c:if>
+                    <c:if test="${donation.pickedUp}"> <span style="color: blue"> DAR ODEBRANY ${donation.whenPickedUp} </span>  </div> </c:if>
                     <c:if test="${!donation.pickedUp}"> <span style="color: red"> DAR NIEODEBRANY </span>  </div> </c:if>
                 <div style="height: 20px"></div>
 

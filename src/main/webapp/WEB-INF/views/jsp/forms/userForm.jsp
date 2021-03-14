@@ -27,7 +27,7 @@
                     <form:input path="id" type="hidden"/>
                 </c:if>
 
-                <form:input path="isActive" type="hidden"/>
+<%--                <form:input path="isActive" type="hidden"/>--%>
 
                 <div class="form-group">
 

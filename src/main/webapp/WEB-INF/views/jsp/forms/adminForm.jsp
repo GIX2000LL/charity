@@ -24,7 +24,7 @@
             <form:form modelAttribute="admin">
 
                 <c:if test="${admin.id !=0}">
-                    <form:input path="id" type="hidden" cssStyle="background: white"/>
+                    <form:input path="id" type="hidden"/>
                 </c:if>
             <div class="form-group">
 

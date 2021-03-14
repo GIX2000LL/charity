@@ -6,14 +6,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.charity.component.DonationAdd;
+import pl.coderslab.charity.model.Donation;
 import pl.coderslab.charity.model.Institution;
 import pl.coderslab.charity.model.User;
+import pl.coderslab.charity.repository.DonationRepository;
 import pl.coderslab.charity.repository.InstitutionRepository;
 import pl.coderslab.charity.repository.UserRepository;
 import pl.coderslab.charity.security.BCrypt;
 import pl.coderslab.charity.security.PrincipalDetails;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -24,10 +30,14 @@ public class AdministratorController {
 
     private final InstitutionRepository institutionRepository;
     private final UserRepository userRepository;
+    private final DonationRepository donationRepository;
+    private final DonationAdd donationAdd;
 
-    public AdministratorController(InstitutionRepository institutionRepository, UserRepository userRepository) {
+    public AdministratorController(InstitutionRepository institutionRepository, UserRepository userRepository, DonationRepository donationRepository, DonationAdd donationAdd) {
         this.institutionRepository = institutionRepository;
         this.userRepository = userRepository;
+        this.donationRepository = donationRepository;
+        this.donationAdd = donationAdd;
     }
 
     //---------------------------------------------------------------------------
@@ -225,6 +235,51 @@ public class AdministratorController {
         return "redirect:/users";
     }
 
+    //------------------------ADMIN DONATIONS ALL-----------------------------------------
+
+    @GetMapping("/allDonations/{filter}")
+    public String showNoUserDonations (@PathVariable String filter, Model model){
+
+        List <Donation> allDonations = donationRepository.findAll();
+        Collections.sort(allDonations);
+        model.addAttribute("filter",filter);
+        model.addAttribute("all", allDonations);
+
+        return "user/allDonations";
+    }
+
+    @GetMapping("/allDonations/pickedUp/{id}")
+    public String markDonationAsPicked (@PathVariable Long id) {
+
+        Donation donation = findDonationById(id);
+        donation.setPickedUp(true);
+        donation.setWhenPickedUp(LocalDateTime.now());
+        donationRepository.save(donation);
+
+        return "redirect:/allDonations";
+    }
+
+    @GetMapping("/allDonations/notPickedUp/{id}")
+    public String markDonationAsNotPicked (@PathVariable Long id) {
+
+        Donation donation = findDonationById(id);
+        donation.setPickedUp(false);
+        donation.setWhenPickedUp(null);
+        donationRepository.save(donation);
+
+        return "redirect:/allDonations";
+    }
+
+    @GetMapping("/allDonations/details/{id}/{x}")
+    public String showDonationDetails (@PathVariable Long id, @PathVariable String x, Model model) {
+
+        Donation donation = findDonationById(id);
+        model.addAttribute("donation",donation);
+        model.addAttribute("x",x);
+
+        return "user/donationDetails";
+    }
+
     //--------------------------------------------------------------------------
 
     @ModelAttribute("institutions")
@@ -278,5 +333,35 @@ public class AdministratorController {
                 .filter(user -> user.getSecurityRole().equals("ROLE_USER"))
                 .collect(Collectors.toList());
     }
+
+    private Donation findDonationById (Long id) {
+
+        Optional <Donation> optionalDonation = donationRepository.findById(id);
+
+        return optionalDonation.stream()
+                .findAny()
+                .orElseThrow(NoSuchElementException::new);
+    }
+
+    @ModelAttribute("expire")
+    public List <Donation> showAllExpireDonations () {
+
+        List<Donation> allDonations = donationRepository.findAll();
+        Collections.sort(allDonations);
+
+        return allDonations.stream()
+                .map(donation->donationAdd.makeDonationExpired(donation))
+                .filter(donation -> donation.isExpired())
+                .collect(Collectors.toList());
+    }
+
+    @ModelAttribute("noUser")
+    public List<Donation> showNoUsersDonations () {
+        List<Donation> allDonations = donationRepository.findAll();
+        Collections.sort(allDonations);
+
+        return allDonations;
+    }
+
 
 }

@@ -37,7 +37,7 @@ public class User {
 
     private String securityRole;
 
-    private boolean isActive=true;//=true
+    private boolean isActive=true;
 
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany (mappedBy = "user")

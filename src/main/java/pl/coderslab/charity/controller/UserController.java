@@ -14,6 +14,7 @@ import pl.coderslab.charity.repository.UserRepository;
 import pl.coderslab.charity.security.BCrypt;
 import pl.coderslab.charity.security.PrincipalDetails;
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -41,8 +42,10 @@ public class UserController {
                 .collect(Collectors.toList());
         Collections.sort(result);
 
-        Donation donation = result.get(0);
-        model.addAttribute("primeDonation",donation);
+        if(!result.isEmpty()) {
+            Donation donation = result.get(0);
+            model.addAttribute("primeDonation", donation);
+        }
 
         return "user/userZone";
     }
@@ -86,6 +89,7 @@ public class UserController {
 
         Donation donation = findDonationById(id);
         donation.setPickedUp(true);
+        donation.setWhenPickedUp(LocalDateTime.now());
         donationRepository.save(donation);
 
         return "redirect:/user/donations/"+donation.getUser().getId();
@@ -96,6 +100,7 @@ public class UserController {
 
         Donation donation = findDonationById(id);
         donation.setPickedUp(false);
+        donation.setWhenPickedUp(null);
         donationRepository.save(donation);
 
         return "redirect:/user/donations/"+donation.getUser().getId();

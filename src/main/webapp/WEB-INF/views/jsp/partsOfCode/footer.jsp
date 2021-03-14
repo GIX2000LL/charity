@@ -5,8 +5,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <div class="contact" id="contact">
-    <h2>Skontaktuj się z nami</h2>
-    <h3>Formularz kontaktowy</h3>
+    <h2 style="color: brown">Skontaktuj się z nami</h2>
+    <h3 style="color: forestgreen">Formularz kontaktowy</h3>
     <form  class="form--contact" method="post">
         <form:form modelAttribute="message" method="post">
             <div class="form-group form-group"><form:input type="text" path="name" placeholder="Imię"/></div>
@@ -23,7 +23,7 @@
             <div style="height: 10px"></div>
             <div style="font-size: medium"><form:errors path="message" cssStyle="color: red"/> </div>
 
-            <button class="btn" type="submit">Wyślij</button>
+            <button style="color: blue" class="btn" type="submit">Wyślij</button>
         </form:form>
     </form>
 </div>

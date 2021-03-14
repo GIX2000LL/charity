@@ -9,7 +9,7 @@
 <head>
     <%@include file="../partsOfCode/head.jsp"%>
 </head>
-<body>
+<body style="background-color: bisque">
 <header style="height: 20px">
     <nav class="container container--70">
         <ul class="nav--actions">
@@ -24,26 +24,26 @@
         <form name="form" method="post">
         <form:form modelAttribute="user" method="post">
         <div class="form-group">
-            <form:input type='text' path='firstName' placeholder='Imię' /> <br/>
+            <form:input type='text' path='firstName' placeholder='Imię' cssStyle="background-color: white" /> <br/>
             <div style="height: 10px; font-size: medium"><form:errors path="firstName" cssStyle="color: red"/></div>
         </div>
         <div class="form-group">
-            <form:input type="text" path="lastName" placeholder="Nazwisko" /> <br/>
+            <form:input type="text" path="lastName" placeholder="Nazwisko" cssStyle="background-color: white" /> <br/>
             <div style="height: 10px"></div>
             <div style="height: 10px; font-size: medium"> <form:errors path="lastName" cssStyle="color: red"/></div>
         </div>
         <div class="form-group">
-            <form:input type="email" path="email" placeholder="Email" /> <br/>
+            <form:input type="email" path="email" placeholder="Email" cssStyle="background-color: white" /> <br/>
             <div style="height: 10px"></div>
             <div style="height: 10px; font-size: medium"> <form:errors path="email" cssStyle="color: red"/> </div>
         </div>
         <div class="form-group">
-            <input id="password" type="password" name="password" placeholder="Hasło" /><br/>
+            <input id="password" type="password" name="password" placeholder="Hasło" style="background-color: white" /><br/>
             <div style="height: 10px"></div>
             <div style="height: 10px; font-size: medium"> <form:errors path="password" cssStyle="color: red"/> </div>
         </div>
         <div class="form-group">
-            <input id="password2" type="password" name="password2" placeholder="Powtórz hasło" />
+            <input id="password2" type="password" name="password2" placeholder="Powtórz hasło" style="background-color: white" />
             <div style="height: 10px"></div>
             <div id="error" style="height: 10px; font-size: medium;color: red"></div>
 

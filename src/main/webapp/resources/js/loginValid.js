@@ -12,7 +12,7 @@ function validLoginForm() {
     }
 
     if(password.value.length <4) {
-        passwordError.innerText = 'HASŁO MUSI ZAWIERAĆ CONAJMNIEJ 4 ZNAKI';
+        passwordError.innerText = 'HASŁO MUSI SIĘ SKŁADAĆ Z: CONAJMNIEJ 8 ZNAKÓW, MAŁEJ I DUŻEJ LITERY ORAZ CYFRY';
         password.focus();
         return false;
     }

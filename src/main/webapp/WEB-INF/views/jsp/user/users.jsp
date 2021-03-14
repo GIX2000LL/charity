@@ -24,7 +24,7 @@
     <div align="center">
         <ul style="font-size: large">
             <c:forEach items="${users}" var="user">
-                <li> ${user.firstName}  ${user.lastName}
+                <li style="font-size: xx-large"> ${user.firstName}  ${user.lastName}
                     <table>
                         <tr style="height: 10px"><td></td></tr>
                         <tr>

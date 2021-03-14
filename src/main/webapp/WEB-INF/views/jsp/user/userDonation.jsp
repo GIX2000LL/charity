@@ -39,7 +39,7 @@
                         <button style="color: blue" class="btn--small">OZNACZ DAR JAKO ODEBRANY</button> </a>
                         </c:if>
                         <c:if test="${don.pickedUp}">
-                            <div style="color: blue">*DAR ODEBRANY*</div>
+                            <div style="color: blue">*DAR ODEBRANY*${don.whenPickedUp}</div>
                             <div style="height: 10px"></div>
                             <a href="/user/donation/notPickedUp/${don.id}">
                                 <button style="color: blue" class="btn--small">OZNACZ DAR JAKO NIEODEBRANY</button> </a>

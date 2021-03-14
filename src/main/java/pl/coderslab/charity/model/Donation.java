@@ -10,6 +10,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -56,6 +57,10 @@ public class Donation implements Comparable <Donation> {
     private boolean userConnected=true;
 
     private boolean isPickedUp=false;
+
+    private LocalDateTime whenPickedUp;
+
+    private boolean expired=false;
 
     @ManyToOne
     private User user;
@@ -177,6 +182,22 @@ public class Donation implements Comparable <Donation> {
 
     public void setPickedUp(boolean pickedUp) {
         isPickedUp = pickedUp;
+    }
+
+    public LocalDateTime getWhenPickedUp() {
+        return whenPickedUp;
+    }
+
+    public boolean isExpired() {
+        return expired;
+    }
+
+    public void setExpired(boolean expired) {
+        this.expired = expired;
+    }
+
+    public void setWhenPickedUp(LocalDateTime whenPickedUp) {
+        this.whenPickedUp = whenPickedUp;
     }
 
     @Override
