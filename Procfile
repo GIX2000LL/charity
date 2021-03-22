@@ -1,1 +1,1 @@
-web: java -cp target/classes/:target/dependency/* charity-0.0.1-SNAPSHOT.jar
+web: java target/charity-0.0.1-SNAPSHOT.jar
