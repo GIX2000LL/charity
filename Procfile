@@ -1,1 +1,1 @@
-web: java -cp pl.coderslab.charity.CharityApplication
+web: java -jar target/charity-app-heroku.jar
