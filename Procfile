@@ -1,1 +1,1 @@
-web: java -cp target/classes/;target/dependency/* pl.coderslab.charity.CharityApplication
+web: java -cp pl.coderslab.charity.CharityApplication
