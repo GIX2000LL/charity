@@ -12,7 +12,8 @@
     <artifactId>charity</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>charity</name>
-    <description></description>
+    <packaging>war</packaging>
+
 
 
     <dependencies>
